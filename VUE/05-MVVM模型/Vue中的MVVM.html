@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,28 +12,27 @@
 <body>
     <!-- 准备好一个容器 -->
     <div id="root">
-        单向数据绑定：<input type="text" v-bind:value="name"> 
-        <br/>
-        <!-- v-model 只能用于表单类（输入类）元素上 -->
-        双向数据绑定：<input type="text" v-model:value="name">
-        
-        
-        单向数据绑定：<input type="text" :value="name"> 
-        双向数据绑定：<input type="text" v-model="name">
-        <!-- 无法使用 -->
-        <h2 v.model:x="name">Hello</h2>
+         <h1>School: {{school}}</h1>
+         <h1>Address: {{address}}</h1>
+         <h1>Test: {{1+1}}</h1>
+        <h1>Test: {{$options}}</h1>
+        <h1>Test: {{$emit}}</h1>
+        <h1>Test: {{_c}}</h1>
     </div>
 </body>
 
 <script type="text/javascript">
     Vue.config.productionTip = false //阻止生产提示
 
-    new Vue({
-        el: '#root',
-        data: {
-            name: '花京院'
+    const vm = new Vue({
+        data(){
+            return{
+            school: 'JCU',
+            address: 'Singapore'
         }
+    }
     })
+    vm.$mount('#root')
 </script>
 
 </html>

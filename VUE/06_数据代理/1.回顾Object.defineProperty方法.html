@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,21 +10,18 @@
 </head>
 
 <body>
-    <!-- 准备好一个容器 -->
-    <div id="root">
+    <script type="text/javascript">
+        let person = {
+            name:'张三',
+            sex:'男',
+        }
 
-    </div>
+        Object.defineProperty(person, 'age',{
+            value:18
+        })
+        console.log(person)
+    </script>
 </body>
 
-<script type="text/javascript">
-    Vue.config.productionTip = false //阻止生产提示
-
-    const v = new Vue({
-        data(){
-            name: 'aa'
-        }
-    })
-    v.$mount('#root')
-</script>
 
 </html>
