@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>Welcome to the {{name}}</h1>
+        <!-- <button v-on:click="showInfo">Button</button> -->
+        <button @click="showInfo1">Button</button>
+        <button @click="showInfo2($event, 66)">Button</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                name:'World'
+            }
+        },
+        methods:{
+            showInfo1(event){
+                console.log(event.target.innerText)
+                alert('Hello!')
+            },
+            showInfo2(event, value){
+                console.log(event, value)
+            }
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>
