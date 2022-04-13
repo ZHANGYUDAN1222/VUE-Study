@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <style>
+        .basic{
+            width: 400px;
+            height:100px;
+            border: 1px solid black;
+        }
+        .happy{
+            border: 4px solid red;
+            background-color: rgba(255, 255, 0, 0.644);
+            background: linear-gradient(30deg, yellow, pink, orange, yellow);
+        }
+        .sad{
+            border: 4px solid rgb(49, 206, 57);
+            background-color: rgba(101, 221, 71, 0.644);
+        }
+        .normal{            
+            border: 4px solid rgb(255, 255, 255);
+            background-color: rgba(124, 124, 107, 0.644);
+        }
+        .atguigu1{
+            background-color: rgba(85, 100, 187, 0.644);
+        }
+        .atguigu2{
+            font-size: 40px;
+            font-style:oblique;
+        }
+        .atguigu3{
+            border-radius: 30px;
+        }
+    </style>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 绑定class样式--字符串写法， 适用于：样式的类名不确定， 需要动态指定 -->
+        <div class="basic" :class="mood" @click="changeMood">{{name}}</div>
+        <br>
+        <!-- 绑定class样式--数组写法， 适用于：样式的类名不确定, 个数也不确定， 需要动态指定 -->
+        <div class="basic" :class="classArr" @click="changeMood">{{name}}</div>
+        <br>
+        <!-- 绑定class样式--对象写法， 适用于：样式的类名确定, 个数也确定， 需要动态指定用不用 -->
+        <div class="basic" :class="classObj" @click="changeMood">{{name}}</div>
+        <br>
+        <!-- 绑定style样式--对象写法， 适用于：样式的类名确定, 个数也确定， 需要动态指定用不用 -->
+        <div class="basic" :style ="styleObj">{{name}}</div>
+        <br>
+        <!-- 绑定style样式--数组写法， 适用于：样式的类名确定, 个数也确定， 需要动态指定用不用 -->
+        <div class="basic" :style ="[styleObj,styleObj2]">{{name}}</div>
+        <br>
+        <!-- 绑定style样式--对象写法， 适用于：样式的类名确定, 个数也确定， 需要动态指定用不用 -->
+        <div class="basic" :style ="styleArr">{{name}}</div>
+        
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                name:'aa',
+                mood:'normal',
+                classArr:['atguigu1', 'atguigu2', 'atguigu3'],
+                classObj:{
+                    atguigu1:false,
+                    atguigu2:false,
+                },
+                styleObj:{
+                    fontSize: '40px',
+                    color: 'red'
+                },
+                styleObj2:{
+                    backgroundColor:'orange'
+                },
+                // 不常用
+                styleArr:[
+                    {
+                        fontSize:'40px',
+                        color:'blue'
+                    },
+                    {
+                        backgroundColor:'gray'
+                    }
+                ]
+            }
+        },
+        methods:{
+            changeMood(){
+                const arr = ['happy', 'sad','normal']
+                const index = Math.floor(Math.random()*3)
+                this.mood = arr[index]
+            }
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>

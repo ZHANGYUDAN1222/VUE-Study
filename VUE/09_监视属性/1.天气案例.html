@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- <h2>Today's weather is {{isHot? 'Cool': 'Hot'}}</h2> -->
+        <h2>Today's weather is {{info}}</h2>
+        <button @click="changeWeather">Change weather</button>
+        <!-- <button @click="isHot = !isHot">Change weather</button> -->
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                isHot: true
+            }
+        },
+        methods:{
+            // 可以直接写到 @click 里
+            // changeWeather(){
+            //     this.isHot = !this.isHot
+            // }
+        },
+        computed:{
+            info(){
+                return this.isHot? 'Cool':'Hot'
+            }
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>

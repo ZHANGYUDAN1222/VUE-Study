@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        First_name: <input type="text" v-model='firstName'><br>
+        Last_name: <input type="text" v-model="lastName"><br>
+        Full_name: <span>{{fullName}}</span>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                firstName:'Zhang',
+                lastName:'San',
+                fullName:'Zhang-San'
+            }
+        },
+        // 当watch能实现，computed也能实现时， 用computed， 但是当有异步操作时， 用watch
+        watch:{
+            firstName(newValue){
+                setTimeout(()=>{
+                    this.fullName = newValue + '-' + this.lastName
+                }, 1000)
+            },
+            lastName(newValue){
+                this.fullName = this.firstName + '-' + newValue
+            }
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>

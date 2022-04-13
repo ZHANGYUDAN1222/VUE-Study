@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>Today's weather is {{info}}</h2>
+        <button @click="changeWeather">Change weather</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                isHot:true,
+            }
+        },
+        methods:{        
+            changeWeather(){
+                this.isHot = !this.isHot
+            }
+        },
+        computed:{
+            info(){
+                return this.isHot? 'Cool':'Hot'
+            }
+        },
+/*         watch:{
+            isHot(newValue, oldValue){
+            console.log('weather been changed', newValue, oldValue)
+            }
+        } */
+    })
+
+
+    // 完整的正常写法， 当有immediate 和 deep时
+/*     vm.$watch("info", {
+        deep:true,   
+        immediate:true,
+        handler(newValue, oldValue){
+            console.log('weather been changed', newValue, oldValue)
+        }
+    }) */
+
+    vm.$watch('isHot', function(newValue, oldValue){
+        console.log('isHot been changed', newValue, oldValue)
+    })
+
+
+    // 简写
+    vm.$mount('#root')
+</script>
+
+</html>

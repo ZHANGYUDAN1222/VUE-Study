@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>Today's weather is {{info}}</h2>
+        <button @click="changeWeather">Change weather</button>
+        <hr>
+        <h3>a's value is: {{numbers.a}}</h3>
+        <button @click="add1">click to add 1</button>
+        <h3>b's value is: {{numbers.b}}</h3>
+        <button @click="add2">click to add 1</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                isHot:true,
+                numbers:{
+                    a: 1,
+                    b: 1,
+                    c: 1
+                }
+            }
+        },
+        methods:{
+            add1(){
+                this.numbers.a++
+            },     
+            add2(){
+                this.numbers.b++
+            },           
+            changeWeather(){
+                this.isHot = !this.isHot
+            }
+        },
+        computed:{
+            info(){
+                return this.isHot? 'Cool':'Hot'
+            }
+        },
+        // watch第一种写法
+        // watch:{
+        //     isHot:{
+        //         // 初始化时让handler调用一下
+        //         immediate:true,
+        //         // 当Hot发生改变时， 调用handler
+        //         handler(newValue, oldValue){
+        //             console.log('isHot been changed', newValue, oldValue)
+        //         }
+        //     },
+        //     info:{
+        //         immediate:true,
+        //         handler(newValue, oldValue){
+        //             console.log('info been changed', newValue, oldValue)
+        //         }
+        //     }
+        // }
+    })
+
+
+//  watch第二种写法
+    vm.$watch("numbers", {
+        deep:true,   //监视多级结构中某个属性的变化。
+        // immediate:true,
+        handler(newValue, oldValue){
+            console.log('number been changed', newValue, oldValue)
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>
