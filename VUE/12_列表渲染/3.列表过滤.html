@@ -13,37 +13,13 @@
 <body>
     <!-- 准备好一个容器 -->
     <div id="root">
-        <!-- 遍历数组 -->
         <h2>Name List</h2>
+        <input type="text" placeholder="input name"v-model='keyword'>
         <ul>
-            <!-- 写法1 -->
-            <!-- <li v-for="person in persons" :key="person.id">
-                {{person.name}}-{{person.age}}
-            </li> -->
+            <li v-for="person in persons" :key="person.id">
+                {{person.name}}-{{person.age}}-{{person.gender}}
+            </li> 
 
-            <!-- 写法2 -->
-            <li v-for="(person, index) in persons" :key="index">
-                {{person.name}}-{{person.age}}---{{index}}
-            </li>
-        </ul>
-
-
-        <!-- 遍历对象 -->
-        <h2>Car Info</h2>
-        <ul>
-            <li v-for="(value, key) in car" :key="key">
-                {{key}}-{{value}}
-            </li>
-        </ul>
-
-
-        <!-- 遍历指定次数 -->
-        <h2>Set Traverse Time</h2>
-        <ul>
-            <li v-for="(value, key) in 5" :key="key">
-                {{key}}-{{value}}
-            </li>
-        </ul>
     </div>
 </body>
 
@@ -53,21 +29,25 @@
     const vm = new Vue({
         data(){
             return{
+                keyword:'',
                 persons:[
-                    {id:'001',name: 'ZhangSan',age: 18},
-                    {id:'002',name: 'LiSi',age: 17},
-                    {id:'003',name: 'WangWU',age: 21}
-                ],
-                car:{
-                    name:'奥迪A8',
-                    price:'70W',
-                    color:'Black'
-                }
+                    {id:'001',name: '马冬梅',age: 18,gender:'女'},
+                    {id:'002',name: '周冬雨',age: 17,gender:'女'},
+                    {id:'003',name: '周杰伦',age: 21,gender:'男'},
+                    {id:'004',name: '温兆伦',age: 17,gender:'男'},
+                ]
             }
         },
         methods:{
             showInfo(){
                 
+            }
+        },
+        watch:{
+            keyword(val){
+                this.persons = this.persons.filter((person)=>{
+                    return person.name.indexOf(val) !== -1
+                })
             }
         }
     })
