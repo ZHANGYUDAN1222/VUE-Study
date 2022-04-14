@@ -16,7 +16,7 @@
         <h2>Name List</h2>
         <input type="text" placeholder="input name"v-model='keyword'>
         <ul>
-            <li v-for="person in persons" :key="person.id">
+            <li v-for="person in filpersons" :key="person.id">
                 {{person.name}}-{{person.age}}-{{person.gender}}
             </li> 
 
@@ -26,6 +26,47 @@
 <script type="text/javascript">
     Vue.config.productionTip = false //阻止生产提示
     
+
+    // 用 watch 实现
+/*     const vm = new Vue({
+        data(){
+            return{
+                keyword:'',
+                persons:[
+                    {id:'001',name: '马冬梅',age: 18,gender:'女'},
+                    {id:'002',name: '周冬雨',age: 17,gender:'女'},
+                    {id:'003',name: '周杰伦',age: 21,gender:'男'},
+                    {id:'004',name: '温兆伦',age: 17,gender:'男'},
+                ],
+                filpersons:[]
+            }
+        },
+        methods:{
+            showInfo(){
+                
+            }
+        },
+        watch:{
+            // 简写
+            // keyword(val){
+            //     this.persons = this.persons.filter((person)=>{   //filter 会返回一个全新数组， persons并没有被改变， 页面也不会变
+            //         return person.name.indexOf(val) !== -1       // 若输入框为空，则全部匹配，因为都包含空字符串。
+            //     })
+            // }
+
+            // 完整写法
+            keyword:{
+                immediate: true,      // 一开始没有val， 则为空字符串， 空字符串则filPersons全部显示。
+                handler(val){
+                    this.filpersons = this.persons.filter((person)=>{ 
+                    return person.name.indexOf(val) !== -1
+                    })
+                },
+            }
+        }
+    }) */
+    
+    // 用 computed 实现
     const vm = new Vue({
         data(){
             return{
@@ -35,18 +76,13 @@
                     {id:'002',name: '周冬雨',age: 17,gender:'女'},
                     {id:'003',name: '周杰伦',age: 21,gender:'男'},
                     {id:'004',name: '温兆伦',age: 17,gender:'男'},
-                ]
+                ],
             }
         },
-        methods:{
-            showInfo(){
-                
-            }
-        },
-        watch:{
-            keyword(val){
-                this.persons = this.persons.filter((person)=>{
-                    return person.name.indexOf(val) !== -1
+        computed:{
+            filpersons(){
+                return this.persons.filter((person)=>{
+                    return person.name.indexOf(this.keyword) !== -1
                 })
             }
         }
