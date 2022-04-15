@@ -24,11 +24,11 @@
         // 第一个
         btns[0].onclick = function(){
             // 发送 AJAX 请求
-            axios({
+            axios.request({
                 // 请求类型
                 method: 'GET',
                 // URL
-                url: 'http://localhost:3000/posts/1',
+                url: 'http://localhost:3000/comments',
             }).then(res=>{
                 console.log(res);
             });
@@ -37,48 +37,12 @@
         // 第二个
         btns[1].onclick = function(){
             // 发送 AJAX 请求
-            axios({
-                // 请求类型
-                method: 'POST',
-                // URL
-                url: 'http://localhost:3000/posts/2',
-                // 设置请求体
-                data:{
-                    title: "This is a New title",
-                    author: "Me"
+            axios.post('http://localhost:3000/comments',
+                {
+                    body: "This is a New title",
+                    postId: 2
                 }
-            }).then(res=>{
-                console.log(res);
-            });
-        }
-        
-        // 第三个
-        btns[2].onclick = function(){
-            // 发送 AJAX 请求
-            axios({
-                // 请求类型
-                method: 'PUT',
-                // URL
-                url: 'http://localhost:3000/posts/3',
-                // 设置请求体
-                data:{
-                    title: "This is a New title",
-                    author: "You"
-                }
-            }).then(res=>{
-                console.log(res);
-            });
-        }
-        
-        // 第四个
-        btns[3].onclick = function(){
-            // 发送 AJAX 请求
-            axios({
-                // 请求类型
-                method: 'DELETE',
-                // URL
-                url: 'http://localhost:3000/posts/3'
-            }).then(res=>{
+            ).then(res=>{
                 console.log(res);
             });
         }
