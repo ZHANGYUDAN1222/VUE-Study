@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <button @click="addGender">Add gender for 花京院</button>
+         <h2>Name:{{name}}</h2>
+         <h2>Age:{{age}}</h2>
+         <br>
+         <h2>CountryName:{{country.name}}</h2>
+         <h2 v-if="country.gender">Gender:{{country.gender}}</h2>
+         <h2>CountryAddress:{{country.address}}</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+
+    const vm = new Vue({
+        data(){
+            return{
+                name:'花京院',
+                age:19,
+                country:{
+                    name: 'Japan',
+                    address: 'Earth'
+                }
+            }
+        },
+        methods: {
+            addGender(){
+                Vue.set(this.country, 'gender', 'male')
+                // this.$set(this._data, 'gender', 'male')
+            }
+        },
+    })
+    vm.$mount('#root')
+
+
+    // 写完打开网页想添加数据 student.gender ='male'， 可以在console写 Vue.set(vm.student, 'gender', 'male')
+    // 或 vm.$set(vm.student, 'gender', 'male')
+</script>
+
+</html>
