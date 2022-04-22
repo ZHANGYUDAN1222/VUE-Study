@@ -44,7 +44,8 @@
                 // this.persons[0].gender = '男'  //奏效
 
                 // 如果先打开vue.tool， 则按按钮不会改变， 若先按按钮， 只有vue.tool里的会变！！！！！
-                this.persons[0] = {id:'001',name: '马老师',age: 50,gender:'男'}
+                // this.persons[0] = {id:'001',name: '马老师',age: 50,gender:'男'}   // 不奏效
+                this.persons.splice(0,1,{id:'001',name: '马老师',age: 50,gender:'男'})
             }
         },
     })

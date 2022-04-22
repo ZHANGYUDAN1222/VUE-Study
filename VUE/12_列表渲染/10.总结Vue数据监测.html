@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>StudenInfo</h1>
+
+        <button @click="age++">Age+1</button><br>
+        <button @click="addGender(gender)">Add gender, default:male</button><br>
+        <button @click="changeGender()">changeGender</button><br>
+        <button @click.once="addFirstFriend()">Add a friend at the top</button><br>
+        <button @click.once="changeName()">Modify the name of the first friend: ZhangSan</button><br>
+        <button>Add a hobby</button><br>
+        <button>Modify the first hobby to driving</button><br>
+
+        <h3>Name:{{student.name}}</h3>
+        <h3>Age:{{student.age}}</h3>
+        <h3>Hobby:</h3>
+        <ul>
+            <li v-for="(h, index) in student.hobby" :key="index">
+                {{h}}
+            </li>
+        </ul>
+        <h3 v-if="student.gender">Gender:{{student.gender}}</h3>
+        <h3>Friends:</h3>
+        <ul>
+            <li v-for="(f, index) in student.friends" :key="index">
+                {{f.name}}--{{f.age}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                student:{
+                    name:'Tom',
+                    age:18,
+                    hobby:['smoking','drinking', 'hairing'],
+                    friends:[
+                        {name:'Jerry', age:35},
+                        {name:'Tony', age:36}
+                    ]
+                }
+            }
+        },
+        methods:{
+            addGender(gender){
+                Vue.set(this.student, "gender", "male")
+            },
+            changeGender(){
+                if(this.student.gender==='male'){
+                    this.student.gender = 'female'
+                }else if(this.student.gender==='female'){
+                    this.student.gender = 'male'
+                }else{
+                    alert("Student don't have a gender yet")
+                }
+            },
+            addFirstFriend(){
+                this.student.friends.unshift({name:'Mary', age:36})
+            },
+            changeName(){
+                this.student
+            }
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>
