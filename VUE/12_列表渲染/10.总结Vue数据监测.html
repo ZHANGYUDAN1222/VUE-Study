@@ -16,12 +16,12 @@
         <h1>StudenInfo</h1>
 
         <button @click="age++">Age+1</button><br>
-        <button @click="addGender(gender)">Add gender, default:male</button><br>
-        <button @click="changeGender()">changeGender</button><br>
-        <button @click.once="addFirstFriend()">Add a friend at the top</button><br>
-        <button @click.once="changeName()">Modify the name of the first friend: ZhangSan</button><br>
-        <button>Add a hobby</button><br>
-        <button>Modify the first hobby to driving</button><br>
+        <button @click="addGender">Add gender, default:male</button><br>
+        <button @click="changeGender">changeGender</button><br>
+        <button @click.once="addFirstFriend">Add a friend at the top</button><br>
+        <button @click.once="changeName">Modify the name of the first friend: ZhangSan</button><br>
+        <button @click="addHobby">Add a hobby</button><br>
+        <button @click="changeHobby">Modify the first hobby to driving</button><br>
 
         <h3>Name:{{student.name}}</h3>
         <h3>Age:{{student.age}}</h3>
@@ -70,12 +70,18 @@
                 }else{
                     alert("Student don't have a gender yet")
                 }
-            },
+            }, 
             addFirstFriend(){
                 this.student.friends.unshift({name:'Mary', age:36})
             },
             changeName(){
-                this.student
+                this.student.friends[0].name = 'zhangsan'
+            },
+            addHobby(){
+                this.student.hobby.unshift('studying')
+            },
+            changeHobby(){
+                this.student.hobby.splice(0,1, 'studying')
             }
         }
     })
