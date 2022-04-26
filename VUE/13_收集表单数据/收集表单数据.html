@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <form>
+            <label for="userAccount">UserAccount:</label>
+            <input type="text" id="userAccount">
+            <hr>
+            <label for="userPassword">UserPassword:</label>
+            <input type="text" id="userPassword">
+            <hr>
+            <label>Gender:</label>
+            <br>
+            <label for="male">Male</label>
+            <input type="radio" id="male" name="gender">
+            <label for="userPassword">Female</label>
+            <input type="radio" id="female" name="gender">
+            <hr>
+            <label>Hobby:</label>
+            <br>
+            <label for="male">Male</label>
+            <input type="checkbox" id="male" name="gender">
+            <label for="userPassword">Female</label>
+            <input type="radio" id="female" name="gender">
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                name:'aa'
+            }
+        },
+        methods:{
+            showInfo(){
+                
+            }
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>
