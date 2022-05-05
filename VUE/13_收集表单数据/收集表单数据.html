@@ -15,24 +15,36 @@
     <div id="root">
         <form>
             <label for="userAccount">UserAccount:</label>
-            <input type="text" id="userAccount">
+            <input type="text" id="userAccount" v-model.trim="account">
             <hr>
             <label for="userPassword">UserPassword:</label>
-            <input type="text" id="userPassword">
+            <input type="text" id="userPassword" v-model="password">
             <hr>
             <label>Gender:</label>
             <br>
             <label for="male">Male</label>
-            <input type="radio" id="male" name="gender">
+            <input type="radio" id="male" name="gender" v-model="gender" value="male">
             <label for="userPassword">Female</label>
-            <input type="radio" id="female" name="gender">
+            <input type="radio" id="female" name="gender" v-model="gender" value="female">
             <hr>
             <label>Hobby:</label>
             <br>
-            <label for="male">Male</label>
-            <input type="checkbox" id="male" name="gender">
-            <label for="userPassword">Female</label>
-            <input type="radio" id="female" name="gender">
+            <label for="sleeping">sleeping</label>
+            <input type="checkbox" value="sleeping" name="sleeping" v-model="hobby">
+            <label for="shopping">shopping</label>
+            <input type="checkbox" value="shopping" name="shopping" v-model="hobby">
+            <hr>
+            Institution:
+            <select v-model="city">
+                <option value="">Select your Institution</option>
+                <option value="beijing">Beijing</option>
+                <option value="shanghai">Shanghai</option>
+                <option value="shenzhen">Shenzhen</option>
+            </select>
+            <hr>
+            Other info:
+            <textarea v-model="other"></textarea>
+            <button>Submit</button>
         </form>
     </div>
 </body>
@@ -43,7 +55,12 @@
     const vm = new Vue({
         data(){
             return{
-                name:'aa'
+                account:'',
+                password:'',
+                gender:'',
+                hobby:[],
+                city:'',
+                other:'',
             }
         },
         methods:{
