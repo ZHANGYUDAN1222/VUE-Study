@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>Show Formated Time</h2>
+        <h3>Now showing:{{time}}</h3>
+        <!-- 计算属性实现 -->
+        <h3>Computed:{{fmtTime}}</h3>
+        <!-- Methods实现 -->
+        <h3>Methods:{{getFmtTime()}}</h3>
+        <!-- 过滤器实现 -->
+        <h3>Filter:{{time | timeFormater}}</h3>
+    </div>
+</body>
+
+<script type="text/javascript">
+    // import dayjs from "../js/dayjs.min.js"
+    Vue.config.productionTip = false //阻止生产提示
+
+    // 下载或引用一个day.js的包，可以format时间戳
+    
+    const vm = new Vue({
+        data(){
+            return{
+                time: 1651129923231
+            }
+        },
+
+        computed:{
+            fmtTime(){
+                return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+            }
+        },
+
+        methods: {
+        
+            getFmtTime(){
+                return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+
+            }
+        },
+        filters:{
+            timeFormater(value){
+                return dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+            }
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>
