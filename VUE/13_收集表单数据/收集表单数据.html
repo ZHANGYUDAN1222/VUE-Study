@@ -13,26 +13,55 @@
 <body>
     <!-- 准备好一个容器 -->
     <div id="root">
-        <form>
+        <form @submit.prevent="demo">
             <label for="userAccount">UserAccount:</label>
-            <input type="text" id="userAccount">
+            <input type="text" id="userAccount" v-model.trim="userAccount">
             <hr>
             <label for="userPassword">UserPassword:</label>
-            <input type="text" id="userPassword">
+            <input type="text" id="userPassword" v-model="userPassword">
             <hr>
+            <label for="age">Age</label>
+            <input type="number" id="age" v-model.number="age">
+            <hr>
+
+
             <label>Gender:</label>
             <br>
-            <label for="male">Male</label>
-            <input type="radio" id="male" name="gender">
-            <label for="userPassword">Female</label>
-            <input type="radio" id="female" name="gender">
+            <label for="male">Male</label   >
+            <input type="radio" id="male" name="gender" value="male" v-model="gender">
+            <label for="female">Female</label>
+            <input type="radio" id="female" name="gender" value="female" v-model="gender">
             <hr>
+
+
             <label>Hobby:</label>
             <br>
-            <label for="male">Male</label>
-            <input type="checkbox" id="male" name="gender">
-            <label for="userPassword">Female</label>
-            <input type="radio" id="female" name="gender">
+            <label for="eating">eating</label>
+            <input type="checkbox" id="eating" value="eating" v-model="hobby">
+            <label for="shopping">shopping</label>
+            <input type="checkbox" id="shopping" value="shopping" v-model="hobby">
+            <label for="sleeping">sleeping</label>
+            <input type="checkbox" id="sleeping" value="sleeping" v-model="hobby">
+            <hr>
+
+
+            <label for="institution">Institution</label>
+            <select name="institutions" id="institution" v-model="institution">
+                <option value="shanghai">ShangHai</option>
+                <option value="beijing">Beijing</option>
+                <option value="changsha">Changsha</option>
+                <option value="shijiazhuang">Shijiazhuang</option>
+            </select>
+            <hr>
+
+
+            <label for="otherInfo">OtherInfo</label>
+            <textarea name="otherInfo" id="otherInfo" cols="30" rows="10" v-model.lazy="moreInfo"></textarea>
+            <hr>
+
+            <label for="agreement">UserAgreement</label>
+            <input type="checkbox" name="agreement" id="agreement" v-model="agreement">
+            <button @click="submitForm">Submit</button>
         </form>
     </div>
 </body>
@@ -43,12 +72,19 @@
     const vm = new Vue({
         data(){
             return{
-                name:'aa'
+                userAccount:'',
+                userPassword:"",
+                gender:"",
+                age:0,
+                hobby:[],
+                institution:"",  
+                moreInfo:"",
+                agreement:"",              
             }
         },
         methods:{
-            showInfo(){
-                
+            demo(){
+                alert('Submited')
             }
         }
     })
