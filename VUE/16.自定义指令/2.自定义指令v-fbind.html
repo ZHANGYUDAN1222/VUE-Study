@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First_Meet_Vue</title>
+    <!-- introduce vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+<!-- 
+需求1： 定义一个v-big指令， 和v-text功能类似， 但会把绑定的数值放大10倍
+需求2： 定义一个v-fbind指令，和v-bind功能类似， 但可以让其所绑定的input元素默认获取焦点。 -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <button @click="n++">点我n+1</button>
+        <input type="text" v-fbind:value="n">
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止生产提示
+    
+    const vm = new Vue({
+        data(){
+            return{
+                n:1
+            }
+        },
+        directives:{
+            fbind:{
+                // 指令与元素成功绑定
+                bind(element, binding){
+                    console.log('bind')
+                    element.value = binding.value
+                },
+                // 指令所在元素被插入页面时
+                inserted(element, binding){
+                    console.log('inserted')
+                    element.focus()
+                },
+                // 指令所在的模板被重新解析时
+                update(element, binding){
+                    console.log('updated')
+                    element.value = binding.value
+                },
+            }
+        }
+    })
+    vm.$mount('#root')
+</script>
+
+</html>
