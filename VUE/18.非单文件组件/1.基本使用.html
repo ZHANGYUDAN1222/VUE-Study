@@ -25,13 +25,12 @@
     Vue.config.productionTip = false //阻止生产提示
 
     // 创建一个school组件
-    const school = Vue.extend({
+    const schoolA = Vue.extend({
+        // el:'#root', 组件定义时， 一定不要写el配置项， 因为最终所有的组件都要被一个vm管理，由vm决定服务于哪个容器。
         data(){
             return{
                 schoolName:'aa',
                 schoolAddress:"aaa",
-                studentName:"bb",
-                age:16,
             }
         },
         methods:{
@@ -40,23 +39,27 @@
             }
         }
     })
-/*     
-    const vm = new Vue({
+
+    // 创建一个student组件
+    const student = Vue.extend({
         data(){
-            return{
-                schoolName:'aa',
-                schoolAddress:"aaa",
+            return {
                 studentName:"bb",
-                age:16,
-            }
-        },
-        methods:{
-            showInfo(){
-                
+                age:19,
             }
         }
     })
-    vm.$mount('#root') */
+
+    // 创建vm
+    
+    new Vue({
+        el:'#root',
+        // 注册组件
+        components:{
+            school: schoolA,
+
+        }
+    })
 </script>
 
 </html>
